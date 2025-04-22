@@ -141,3 +141,14 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 # async_to_sync(channel_layer.send)('test_channel', {'type': 'hello'})
 # async_to_sync(channel_layer.receive)('test_channel')
 # {'type': 'hello'}
+
+# mysite/settings.py
+DATABASES = {
+    "default": {
+        "ENGINE": "django.db.backends.sqlite3",
+        "NAME": BASE_DIR / "db.sqlite3",
+        "TEST": {
+            "NAME": BASE_DIR / "db.sqlite3",
+        },
+    }
+}
