@@ -3,6 +3,7 @@
 import json
 from channels.generic.websocket import WebsocketConsumer
 
+# the following is a synchronous websocket consumer.
 class ChatConsumer(WebsocketConsumer):
     def connect(self):
         self.accept()

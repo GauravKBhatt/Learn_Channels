@@ -33,6 +33,7 @@ ALLOWED_HOSTS = []
 INSTALLED_APPS = [
     'daphne',
     'chat',
+    'channels',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -68,8 +69,16 @@ TEMPLATES = [
     },
 ]
 
-WSGI_APPLICATION = 'mysite.wsgi.application'
-
+# WSGI_APPLICATION = 'mysite.wsgi.application'
+ASGI_APPLICATION = "mysite.asgi.application"
+CHANNEL_LAYERS = {
+    "default": {
+        "BACKEND": "channels_redis.core.RedisChannelLayer",
+        "CONFIG": {
+            "hosts": [("127.0.0.1", 6379)],
+        },
+    },
+}
 
 # Database
 # https://docs.djangoproject.com/en/5.2/ref/settings/#databases
@@ -123,4 +132,12 @@ STATIC_URL = 'static/'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-ASGI_APPLICATION = "mysite.asgi.application"
+# ASGI_APPLICATION = "mysite.asgi.application"
+
+# # $ python3 manage.py shell
+# import channels.layers
+# channel_layer = channels.layers.get_channel_layer()
+# from asgiref.sync import async_to_sync
+# async_to_sync(channel_layer.send)('test_channel', {'type': 'hello'})
+# async_to_sync(channel_layer.receive)('test_channel')
+# {'type': 'hello'}
